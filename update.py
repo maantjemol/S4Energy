@@ -9,5 +9,6 @@ def update():
     None
   """
   # update de capiciteit CSV file
-  data = parse_stations.parseStationsGPKG("./data/beschikbare_capaciteit_elektriciteitsnet.gpkg", 0, 0)
+  print("Getting stations")
+  data = parse_stations.parseStationsGPKG(0, 0)
   parse_stations.writeStationsToCSV(data, "./output/beschikbare_capaciteit_elektriciteitsnet.csv")

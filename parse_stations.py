@@ -1,12 +1,13 @@
 import geopandas as gpd
 import geopy
 import pandas as pd
+import requests
 
 def get_zip_code(point, geolocator):
     location = geolocator.reverse(f"{point.y}, {point.x}")
     return location.raw['address']['postcode']
 
-def parseStationsGPKG(filename: str, min_in: int, min_out: int):
+def parseStationsGPKG(min_in: int, min_out: int):
   """
     Parses a GeoPackage file containing stations data and filters it
     based on several conditions.
@@ -22,7 +23,9 @@ def parseStationsGPKG(filename: str, min_in: int, min_out: int):
         A GeoDataFrame containing the filtered data.
   """
 
-  data = gpd.read_file(filename)
+  url = "https://service.pdok.nl/kadaster/netcapaciteit/atom/v1_0/downloads/beschikbare_capaciteit_elektriciteitsnet.gpkg"
+
+  data = gpd.read_file(url)
 
   data["beschikbare_capaciteit_invoeding_huidig_mva"] = pd.to_numeric(data['beschikbare_capaciteit_invoeding_huidig_mva'],errors='coerce')
   data["beschikbare_capaciteit_afname_huidig_mva"] = pd.to_numeric(data['beschikbare_capaciteit_afname_huidig_mva'],errors='coerce')
@@ -59,5 +62,5 @@ def writeStationsToCSV(data, filename: str):
     f.write(csv_data)
 
 if __name__ == "__main__":
-  data = parseStationsGPKG("./data/beschikbare_capaciteit_elektriciteitsnet.gpkg", 0, 0)
+  data = parseStationsGPKG(0, 0)
   writeStationsToCSV(data, "./output/beschikbare_capaciteit_elektriciteitsnet.csv")

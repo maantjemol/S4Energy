@@ -385,5 +385,5 @@ polygon = {
       }
 
 if __name__ == "__main__":
-  # print(calc_area_and_centoid(polygon['coordinates'][0]))
+  print(calc_area_and_centoid(polygon['coordinates'][0]))
   print(calc_distance(4.629148367974661, 51.90479556716147, 4.6164225,51.8953804))

@@ -1,7 +1,6 @@
 import sys
 import argparse
 import pandas as pd
-sys.path.append('./modules')
 import warnings
 warnings.filterwarnings("ignore")
 
@@ -51,7 +50,7 @@ def generate_points(stations, range=1):
     new_stations.append(station)
   return new_stations
 
-def main():
+def fillStationsCSV():
   df_stations = pd.read_csv("./output/beschikbare_capaciteit_elektriciteitsnet.csv")
   
   stations = []
@@ -169,6 +168,6 @@ def test():
 
 
 if __name__ == "__main__":
-  main()
+  fillStationsCSV()
   # test()
 
