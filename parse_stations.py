@@ -43,6 +43,10 @@ def parseStationsGPKG(min_in: int, min_out: int):
   data = data[isGepland]
   data = data[isInvoeding]
   data = data[isAfname]
+
+  data_all_stations = data.to_crs(epsg=4326)
+  writeStationsToCSV(data_all_stations, "./output/all_stations.csv")
+
   data = data[isInvoedingGd0]
   data = data[isAfnameGd0]
 
