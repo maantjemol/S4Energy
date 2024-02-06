@@ -102,7 +102,7 @@ def fillStationsCSV():
         # lon = x
         # lat = y
         area, center  = vlakken.calc_area_and_centoid(vlak["geometrie"]['coordinates'][0])
-        lon_str, lat_str = station["geometry"].replace("(", "").replace(")", "").split(" ")
+        lat_str, lon_str = station["geometry"].replace("(", "").replace(")", "").split(" ")
         lon, lat = float(lon_str), float(lat_str)
         distance = vlakken.calc_distance(lon, lat, center.x, center.y)
         
@@ -166,6 +166,15 @@ def test():
     except:
       print("Couldn't parse it...")
   
+  for vlak in bestemmings_vlakken:
+    try:
+      area, center  = vlakken.calc_area_and_centoid(vlak["geometrie"]['coordinates'][0])
+      lat_str, lon_str  = station["geometry"].replace("(", "").replace(")", "").split(" ")
+      lon, lat = float(lon_str), float(lat_str)
+      distance = vlakken.calc_distance(lon, lat, center.x, center.y)
+      print(distance, area)
+    except:
+      print("Couldn't parse it...")
   # pandas dataframe:
   # "zip_code", "beschikbare_capaciteit_invoeding_huidig_mva", "beschikbare_capaciteit_afname_huidig_mva", "station_location", "center_vlak", "area_vlak", "distance_to_vlak"
 
