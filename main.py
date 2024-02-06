@@ -73,9 +73,11 @@ def fillStationsCSV():
       break
     print("> loading station", i, "van", len(stations))
     ruimtelijke_plannen = plannen.get_plan(station)
+    print(ruimtelijke_plannen)
     station["plannen"] = ruimtelijke_plannen
     new_stations.append(station)
   
+  print(new_stations)
   # df = pd.DataFrame(columns=["zip_code", "beschikbare_capaciteit_invoeding_huidig_mva", "beschikbare_capaciteit_afname_huidig_mva", "station_location", "center_vlak", "area_vlak", "distance_to_vlak"]) # dataframe for the vlakken
   
   end_dictionary = {"zip_code": [], "beschikbare_capaciteit_invoeding_huidig_mva": [], "beschikbare_capaciteit_afname_huidig_mva": [], "station_lat": [], "station_long": [], "center_vlak_lat": [], "center_vlak_long": [], "area_vlak": [], "distance_to_station": [], "name": [] }
@@ -117,6 +119,7 @@ def fillStationsCSV():
         end_dictionary["distance_to_station"].append(distance)
       except Exception as e:
         print("Couldn't parse it...", e)
+  print(end_dictionary)
     
   df = pd.DataFrame(end_dictionary)
   print(df.head())

@@ -436,10 +436,10 @@ def get_zip(lat, lon):
   return data["address"]["postcode"]
 
 def wtfhapp ():
-  data = pd.read_csv("./output/all_stations_more_2.csv")
+  data = pd.read_csv("./output/all_stations_more.csv")
   # geometry =  (5.671088774486666 51.51036164155714)
-  data["longitude"] = data["geometry"].apply(lambda x: float(x.split(" ")[1].replace(")", "")))
-  data["latitude"] = data["geometry"].apply(lambda x: float(x.split(" ")[0].replace("(", "")))
+  data["latitude"] = data["geometry"].apply(lambda x: float(x.split(" ")[1].replace(")", "")))
+  data["longitude"] = data["geometry"].apply(lambda x: float(x.split(" ")[0].replace("(", "")))
   data = gpd.GeoDataFrame(data, geometry=gpd.points_from_xy(data.longitude, data.latitude))
   # Convert to geodataframe, use crs=4326
 

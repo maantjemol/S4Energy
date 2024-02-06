@@ -28,8 +28,8 @@ def plan_request(lat: float, lon: float):
     'contains': {
       'type': 'Point',
       'coordinates': [
-        lon,
         lat,
+        lon,
       ]},
     },
   }
